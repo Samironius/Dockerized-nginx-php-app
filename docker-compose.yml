@@ -1,0 +1,20 @@
+# docker-compose.yml
+version: '3'
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ./public:/var/www/html
+    depends_on:
+      - php
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile-php
+    volumes:
+      - ./src:/var/www/html
